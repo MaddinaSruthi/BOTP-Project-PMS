@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patient Onboarding</title>
+</head>
+<body>
+<h1 ALIGN="center"  STYLE="font-size:40px;"><b>Patient Onboarding</b></h1>
+<form action="/patients" method="post">
+<!-- Patient Information -->
+<h2 ALIGN="center" STYLE="font-size:30px;">Patient Information</h2>
+
+<style>
+body{
+background-image:
+url('\hospital3.jpg');
+background-repeat:no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
+h1,h2
+{
+font-family:Comic Sans;
+font-style:italic;
+color:#171009;
+}
+
+td
+{
+padding:5px;
+border-spacing: 15px;
+font-size:23px;
+font-weight:bold;
+}
+td>input,td>select
+{
+display:inline-block;
+height:25px;
+}
+td>button
+{
+  padding: 2px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
+<table border="0" align="center">
+<tbody>
+<tr>
+<td><label for="name">Name:</label></td>
+<td><input type="text" id="name" name="name" required><br></tr>
+</td>
+
+<tr>
+<td><label for="dob">Date of Birth:</label></td>
+<td><input type="date" id="dob" name="dateOfBirth" required><br></tr>
+</td>
+
+<tr>
+<td><label for="address">Address:</label></td>
+<td><textarea id="address" name="address" rows="4" cols="50" required></textarea><br></tr>
+</td>
+
+<tr>
+<td><label for="idProof">ID Proof Details:</label></td>
+<td><input type="text" id="idProof" name="idProofDetails" required><br></tr>
+</td>
+
+<tr>
+<td><label for="contactNo">Contact Number:</label></td>
+<td><input type="tel" id="contactNo" name="contactNumber" required><br></tr>
+</td>
+
+<tr>
+<td><label for="emergencyContactNo">Emergency Contact Number:</label></td>
+<td><input type="tel" id="emergencyContactNo" name="emergencyContactNumber" required><br></tr>
+</td>
+
+<tr>
+<td><label for="illness">Primary Illness:</label></td>
+<td><input type="text" id="illness" name="primaryIllness" required><br></tr>
+</td>
+
+<tr>
+<td><label for="symptoms">Symptoms:</label></td>
+<td><textarea id="symptoms" name="symptoms" rows="4" cols="50" required></textarea><br></tr>
+</td>
+
+<tr>
+<td><label for="insurance">Health Insurance:</label></td>
+<td><input type="text" id="insurance" name="healthInsurance"><br></tr>
+</td>
+
+<tr>
+<td><label for="preferredDoctorGender">Preferred Doctor Gender:</label></td>
+<td><select id="preferredDoctorGender" name="preferredDoctorGender">
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+</select><br></tr>
+</td>
+
+</tbody>
+</table>
+
+<table border="0" align="center">
+<tbody>
+<!-- Accompanying Person Information -->
+<h2 ALIGN="center" STYLE="font-size:30px;">Accompanying Person Information</h2>
+
+<tr>
+<td><label for="accompanyingName1">Name:</label></td>
+<td><input type="text" id="accompanyingName1" name="accompanyingName1" required><br></tr>
+</td>
+
+<tr>
+<td><label for="accompanyingContactNo1">Contact Number:</label></td>
+<td><input type="tel" id="accompanyingContactNo1" name="accompanyingContactNo1" required><br></tr>
+</td>
+
+<tr>
+<td><label for="accompanyingIdProof1">ID Proof Details:</label></td>
+<td><input type="text" id="accompanyingIdProof1" name="accompanyingIdProof1" required><br></tr>
+</td>
+
+<tr>
+<td><label for="accompanyingName2">Name (Second Accompanying Person):</label></td>
+<td><input type="text" id="accompanyingName2" name="accompanyingName2"><br></tr>
+</td>
+
+<tr>
+<td><label for="accompanyingContactNo2">Contact Number (Second Accompanying Person):</label></td>
+<td><input type="tel" id="accompanyingContactNo2" name="accompanyingContactNo2"><br>
+</td>
+
+<tr>
+<td><label for="accompanyingIdProof2">ID Proof Details (Second Accompanying Person):</label></td>
+<td><input type="text" id="accompanyingIdProof2" name="accompanyingIdProof2"><br></tr>
+</td>
+
+</tbody>
+</table>
+
+<table border="0" align="center">
+<tbody>
+<!-- Hospital Capacity Information -->
+<h2 ALIGN="center" STYLE="font-size:30px;">Hospital Capacity Information</h2>
+
+<!-- Display hospital capacity information here from the backend using JavaScript or Thymeleaf if needed -->
+
+<!-- Submit button -->
+<tr>
+<td colspan="2" align="center" style="padding:10px;"><button id=btn onclick="getValues()">SUBMIT</button>
+</td></tr>
+</tbody>
+</table>
+</form>
+
+<script>
+        document.getElementById("patientForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const patientData = {};
+
+            for (const [key, value] of formData.entries()) {
+                patientData[key] = value;
+            }
+
+            // Send the patientData to the Spring Boot backend using AJAX or Fetch API
+            // Implement appropriate validation and error handling before making the API call
+        });
+    </script>
+</body>
+</html>
+
+
+<button onclick="viewPatientHistory()">View Patient History</button>
+
+
+    <!-- Section to display patient history -->
+
+    <div id="patientHistory" style="display: none;">
+
+        <h2>Patient History</h2>
+
+        <ul id="patientHistoryList">
+
+            <!-- Patient history will be dynamically added here -->
+
+        </ul>
+
+    </div>
+
+
+    <!-- Button to view hospital capacity -->
+
+    <button onclick="viewHospitalCapacity()">View Hospital Capacity</button>
+
+
+    <!-- Section to display hospital capacity -->
+
+    <div id="hospitalCapacity" style="display: none;">
+
+        <h2>Hospital Capacity</h2>
+
+        <p id="hospitalCapacityInfo">
+
+            <!-- Hospital capacity information will be dynamically added here -->
+
+        </p>
+
+    </div>
+
+
+    <script>
+
+        // JavaScript functions to fetch patient history and hospital capacity using AJAX
+
+
+        function viewPatientHistory() {
+
+            const patientId = 1;
+
+            const url = `/patients/${patientId}/history`;
+
+
+            fetch(url)
+
+                .then(response => response.json())
+
+                .then(patientHistory => {
+
+                    const patientHistoryList = document.getElementById("patientHistoryList");
+                    patientHistoryList.innerHTML = "";
+
+
+                    for (const visit of patientHistory) {
+
+                        const listItem = document.createElement("li");
+
+                        listItem.textContent = `Visit Date: ${visit.visitDate}, Primary Illness: ${visit.primaryIllness}`;
+
+                        patientHistoryList.appendChild(listItem);
+
+                    }
+
+
+                    const patientHistorySection = document.getElementById("patientHistory");
+
+                    patientHistorySection.style.display = "block";
+
+                })
+
+                .catch(error => console.error("Error fetching patient history:", error));
+
+        }
+
+
+        function viewHospitalCapacity() {
+
+            const url = "/hospital-capacity";
+
+
+            fetch(url)
+
+                .then(response => response.json())
+
+                .then(hospitalCapacity => {
+
+                    const hospitalCapacityInfo = document.getElementById("hospitalCapacityInfo");
+
+                    hospitalCapacityInfo.textContent = `Number of Beds: ${hospitalCapacity.numberOfBeds}, Number of Rooms: ${hospitalCapacity.numberOfRooms}`;
+
+
+                    const hospitalCapacitySection = document.getElementById("hospitalCapacity");
+
+                    hospitalCapacitySection.style.display = "block";
+
+                })
+
+                .catch(error => console.error("Error fetching hospital capacity:", error));
+
+        }
+
+    </script>
+
+</body>
+
+</html>
